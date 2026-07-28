@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  amount: 1
+  date: 2026-07-28
+  category: MyString
+
+two:
+  title: MyString
+  amount: 1
+  date: 2026-07-28
+  category: MyString
