@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -22,3 +23,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+=======
+# Expenses-App
+Lista de gastos
+>>>>>>> 63c6939b86f2228a882f12cee5d3385233e844b6
