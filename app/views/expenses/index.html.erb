@@ -1,0 +1,54 @@
+<h1>Mis gastos</h1>
+
+<form action="/expenses" method="get">
+  <select name="category">
+    <option value="" <%= "selected" if params[:category].blank? %>>Todas</option>
+    <option value="Comida" <%= "selected" if params[:category] == "Comida" %>>Comida</option>
+    <option value="Ocio" <%= "selected" if params[:category] == "Ocio" %>>Ocio</option>
+    <option value="Transporte" <%= "selected" if params[:category] == "Transporte" %>>Transporte</option>
+    <option value="Otros" <%= "selected" if params[:category] == "Otros" %>>Otros</option>
+  </select>
+
+  <button type="submit">Filtrar</button>
+</form>
+
+<h2>Total: <%= @total %></h2>
+
+<% @expenses.each do |category, expenses| %>
+  <h2><%= category %></h2>
+
+  <% expenses.each do |expense| %>
+    <div class="expense-card">
+      <p>
+        <%= expense.title %> -
+        <%= expense.amount %> -
+        <%= expense.date %>
+      </p>
+
+      <a href="/expenses/<%= expense.id %>/edit">Editar</a>
+
+      <form action="/expenses/<%= expense.id %>/delete" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button type="submit">Eliminar</button>
+      </form>
+    </div>
+  <% end %>
+<% end %>
+
+<form action="/expenses" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="text" name="title" placeholder="Título">
+  <input type="number" name="amount" placeholder="Monto">
+
+  <select name="category">
+    <option value="Comida">Comida</option>
+    <option value="Ocio">Ocio</option>
+    <option value="Transporte">Transporte</option>
+    <option value="Otros">Otros</option>
+  </select>
+
+  <input type="date" name="date">
+
+  <button type="submit">Agregar</button>
+</form>

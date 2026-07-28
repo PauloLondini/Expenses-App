@@ -1,0 +1,20 @@
+<h1>Editar gasto</h1>
+
+<form action="/expenses/<%= @expense.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="text" name="title" value="<%= @expense.title %>">
+
+  <input type="number" name="amount" value="<%= @expense.amount %>">
+
+  <select name="category">
+    <option value="Comida" <%= "selected" if @expense.category == "Comida" %>>Comida</option>
+    <option value="Ocio" <%= "selected" if @expense.category == "Ocio" %>>Ocio</option>
+    <option value="Transporte" <%= "selected" if @expense.category == "Transporte" %>>Transporte</option>
+    <option value="Otros" <%= "selected" if @expense.category == "Otros" %>>Otros</option>
+  </select>
+
+  <input type="date" name="date" value="<%= @expense.date %>">
+
+  <button type="submit">Guardar</button>
+</form>
