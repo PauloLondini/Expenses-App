@@ -1,7 +1,8 @@
-<h1>Mis gastos</h1>
+<div class="container mt-5 expenses-page">
+<h1 class="text-center mb-4">💰 Mis gastos</h1>
 
-<form action="/expenses" method="get">
-  <select name="category">
+<form action="/expenses" method="get" class="mb-4">
+  <select name="category" class="form-select">
     <option value="" <%= "selected" if params[:category].blank? %>>Todas</option>
     <option value="Comida" <%= "selected" if params[:category] == "Comida" %>>Comida</option>
     <option value="Ocio" <%= "selected" if params[:category] == "Ocio" %>>Ocio</option>
@@ -9,46 +10,85 @@
     <option value="Otros" <%= "selected" if params[:category] == "Otros" %>>Otros</option>
   </select>
 
-  <button type="submit">Filtrar</button>
+  <button type="submit" class="btn btn-primary">
+  Filtrar
+  </button>
 </form>
 
-<h2>Total: <%= @total %></h2>
+<h2 class="text-success mb-4">
+  Total: $<%= @total %>
+</h2>
 
 <% @expenses.each do |category, expenses| %>
   <h2><%= category %></h2>
 
   <% expenses.each do |expense| %>
-    <div class="expense-card">
+    <div class="card shadow-sm mb-3">
+    <div class="card-body">
       <p>
         <%= expense.title %> -
-        <%= expense.amount %> -
+        $<%= expense.amount %> -
         <%= expense.date %>
       </p>
 
-      <a href="/expenses/<%= expense.id %>/edit">Editar</a>
+      <a href="/expenses/<%= expense.id %>/edit" class="btn btn-warning">
+  Editar
+</a>
 
-      <form action="/expenses/<%= expense.id %>/delete" method="post">
+      <form action="/expenses" method="post" class="add-expense-form">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <button type="submit">Eliminar</button>
+
+        <button type="submit" class="btn btn-danger">
+  Eliminar
+</button>
       </form>
     </div>
+    </div>
   <% end %>
+<% end %>
+
+<% if @expense && @expense.errors.any? %>
+  <div class="errors">
+    <h3>No se pudo guardar el gasto:</h3>
+
+    <ul>
+      <% @expense.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
 <form action="/expenses" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <input type="text" name="title" placeholder="Título">
-  <input type="number" name="amount" placeholder="Monto">
+  <input
+  type="text"
+  name="title"
+  class="form-control"
+  placeholder="Título"
+  value="<%= @expense.title %>">
+  <input
+  type="number"
+  name="amount"
+  class="form-control"
+  placeholder="Monto"
+  value="<%= @expense.amount %>">
 
-  <select name="category">
-    <option value="Comida">Comida</option>
-    <option value="Ocio">Ocio</option>
-    <option value="Transporte">Transporte</option>
-    <option value="Otros">Otros</option>
+  <select name="category" class="form-select"> 
+    <option value="Comida" <%= "selected" if @expense.category == "Comida" %>>Comida</option>
+    <option value="Ocio" <%= "selected" if @expense.category == "Ocio" %>>Ocio</option>
+    <option value="Transporte" <%= "selected" if @expense.category == "Transporte" %>>Transporte</option>
+    <option value="Otros" <%= "selected" if @expense.category == "Otros" %>>Otros</option>
   </select>
 
-  <input type="date" name="date">
-
-  <button type="submit">Agregar</button>
+  <input
+  type="date"
+  name="date"
+  class="form-control"
+  value="<%= @expense.date %>">
+  <button type="submit" class="btn btn-success">
+  Agregar
+</button>
 </form>
+</div>

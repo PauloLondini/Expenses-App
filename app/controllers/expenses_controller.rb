@@ -1,26 +1,35 @@
 class ExpensesController < ApplicationController
 
   def index
-    if params[:category].present?
-      expenses = Expense.where(category: params[:category])
-    else
-      expenses = Expense.all
-    end
+  @expense ||= Expense.new
 
-    @total = expenses.sum(:amount)
+  if params[:category].present?
+    expenses = Expense.where(category: params[:category])
+  else
+    expenses = Expense.all
+  end
 
-    @expenses = expenses.group_by { |expense| expense.category }
+  @total = expenses.sum(:amount)
+
+  @expenses = expenses.group_by { |expense| expense.category }
   end
 
   def create
-    Expense.create(
-      title: params[:title],
-      amount: params[:amount],
-      category: params[:category],
-      date: params[:date]
-    )
+  @expense = Expense.new(
+    title: params[:title],
+    amount: params[:amount],
+    category: params[:category],
+    date: params[:date]
+  )
 
+  if @expense.save
     redirect_to "/expenses"
+  else
+    @total = Expense.sum(:amount)
+    @expenses = Expense.all.group_by(&:category)
+
+    render :index, status: :unprocessable_entity
+  end
   end
 
   def edit
