@@ -1,5 +1,8 @@
 body {
-    background: linear-gradient(135deg, #f5f7fa, #dfe9f3);
+    background-image: url("/assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     min-height: 100vh;
 }
 
@@ -10,6 +13,7 @@ body {
 .card {
     border: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: center;
 }
 
 .card:hover {
@@ -23,6 +27,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     margin-top: 30px;
+    position: center;
 }
 
 .errors {
@@ -36,4 +41,5 @@ body {
 
 h1 {
     font-weight: bold;
+    position: center;
 }
