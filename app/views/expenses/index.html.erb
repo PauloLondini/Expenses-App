@@ -1,5 +1,5 @@
 <div class="container mt-5 expenses-page">
-<h1 class="text-center mb-4">💰 Mis gastos</h1>
+<h1 class="text-center mb-4 categorias">💰 Mis gastos</h1>
 
 <form action="/expenses" method="get" class="mb-4">
   <select name="category" class="form-select">
@@ -20,7 +20,7 @@
 </h2>
 
 <% @expenses.each do |category, expenses| %>
-  <h2><%= category %></h2>
+  <h2 class="categorias"><%= category %></h2>
 
   <% expenses.each do |expense| %>
     <div class="card shadow-sm mb-3">
@@ -75,7 +75,7 @@
   placeholder="Monto"
   value="<%= @expense.amount %>">
 
-  <select name="category" class="categorias form-select"> 
+  <select name="category" class="form-select"> 
     <option value="Comida" <%= "selected" if @expense.category == "Comida" %>>Comida</option>
     <option value="Ocio" <%= "selected" if @expense.category == "Ocio" %>>Ocio</option>
     <option value="Transporte" <%= "selected" if @expense.category == "Transporte" %>>Transporte</option>
