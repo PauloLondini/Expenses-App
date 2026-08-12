@@ -9,6 +9,10 @@ body {
     min-height: 100vh;
 }
 
+.categorias {
+    background-color: red;
+}
+
 .expenses-page {
     background-color: transparent;
 }
