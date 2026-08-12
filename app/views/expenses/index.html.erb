@@ -1,7 +1,7 @@
 <div class="container mt-5 expenses-page">
 <h1 class="text-center mb-4">💰 Mis gastos</h1>
 
-<form action="/expenses" method="get" class="categorias mb-4">
+<form action="/expenses" method="get" class="mb-4">
   <select name="category" class="form-select">
     <option value="" <%= "selected" if params[:category].blank? %>>Todas</option>
     <option value="Comida" <%= "selected" if params[:category] == "Comida" %>>Comida</option>
@@ -75,7 +75,7 @@
   placeholder="Monto"
   value="<%= @expense.amount %>">
 
-  <select name="category" class="form-select"> 
+  <select name="category" class="categorias form-select"> 
     <option value="Comida" <%= "selected" if @expense.category == "Comida" %>>Comida</option>
     <option value="Ocio" <%= "selected" if @expense.category == "Ocio" %>>Ocio</option>
     <option value="Transporte" <%= "selected" if @expense.category == "Transporte" %>>Transporte</option>
