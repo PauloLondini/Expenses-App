@@ -1,6 +1,6 @@
 body {
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+        linear-gradient(rgba(0, 0, 0, 0.635), rgba(0, 0, 0, 0.27)),
         url("/background.jpg");
 
     background-size: cover;
@@ -14,13 +14,15 @@ body {
 }
 
 .expenses-page {
-    background-color: transparent;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 50px; 
+    text-align: center;
 }
 
 .card {
     border: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: center;
 }
 
 .card:hover {
@@ -34,7 +36,6 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     margin-top: 30px;
-    position: center;
 }
 
 .errors {
@@ -48,5 +49,41 @@ body {
 
 h1 {
     font-weight: bold;
-    position: center;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    font-size: 3.5rem;
+    margin-bottom: 40px !important;
+}
+
+.total-expenses {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #36e895;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px 0 40px;
+}
+
+.category-title {
+    color: white;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.category-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: white;
+    margin: 10px auto 0;
+    border-radius: 5px;
 }
