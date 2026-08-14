@@ -15,12 +15,12 @@
   </button>
 </form>
 
-<h2 class="text-success mb-4">
+<h2 class="total-expenses">
   Total: $<%= @total %>
 </h2>
 
 <% @expenses.each do |category, expenses| %>
-  <h2 class="categorias"><%= category %></h2>
+  <h2 class="category-title"><%= category %></h2>
 
   <% expenses.each do |expense| %>
     <div class="card shadow-sm mb-3">
